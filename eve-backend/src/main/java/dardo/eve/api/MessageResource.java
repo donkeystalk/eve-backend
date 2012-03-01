@@ -1,6 +1,5 @@
 package dardo.eve.api;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,61 +12,31 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-
-import com.sun.jersey.api.core.InjectParam;
+import com.sun.jersey.spi.resource.Singleton;
 
 import dardo.eve.backend.models.Message;
 
+@Singleton
 @Path("/messages")
 public class MessageResource {
 	
-	private static List<Message> messages = new ArrayList<Message>();
+	private List<Message> messages = new ArrayList<Message>();
 	
 	private static final Logger logger = Logger.getLogger(MessageResource.class);
 	
-	@InjectParam
-	private ObjectMapper mapper;
-	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getMessages()
+	public List<Message> getMessages()
 	{
-		try {
-			return mapper.writeValueAsString(messages);
-		} catch (JsonGenerationException e) {
-			logger.error(e);
-		} catch (JsonMappingException e) {
-			logger.error(e);
-		} catch (IOException e) {
-			logger.error(e);
-		}
-		return "{}";
+		return messages;
 	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addMessage(String msg)
+	public Response addMessage(Message msg)
 	{
-		Message out;
-		try {
-			out = mapper.readValue(msg, Message.class);
-			messages.add(out);
-			return Response.ok().build();
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return Response.serverError().build();
+		messages.add(msg);
+		return Response.ok().build();
 	}
 	
 }
