@@ -7,6 +7,8 @@
 
 	<context:component-scan base-package="dardo.eve" />
 
+	<bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
+
 	<import resource="services.xml" />
 	<import resource="repos.xml" />
 
