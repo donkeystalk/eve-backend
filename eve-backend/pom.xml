@@ -6,7 +6,7 @@
   <name>eve-backend</name>
   
   <properties>
-  	<spring.version>3.1.0.RELEASE</spring.version>
+  	<spring.version>3.0.5.RELEASE</spring.version>
   </properties>
   
   <dependencies>
@@ -28,7 +28,6 @@
 	  <version>${spring.version}</version>
 	</dependency>
   	
-  	<!-- Jersey -->
 	<dependency>
 	  <groupId>com.sun.jersey</groupId>
 	  <artifactId>jersey-server</artifactId>
@@ -64,6 +63,13 @@
 			<artifactId>spring-aop</artifactId>
 		</exclusion>
 	  </exclusions>
+	</dependency>
+	
+	<!-- Logging -->
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.16</version>
 	</dependency>
 	
   </dependencies>
