@@ -8,4 +8,6 @@ import dardo.eve.backend.models.ItemType;
 
 public interface ItemTypeRepository extends JpaRepository<ItemType, Integer>{
 	
+	ItemType findByTypeName(String typeName);
+	
 }

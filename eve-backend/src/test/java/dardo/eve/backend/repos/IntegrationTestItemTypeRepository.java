@@ -29,5 +29,12 @@ public class IntegrationTestItemTypeRepository {
 		ItemType type = repo.findOne(222);
 		assertNotNull(type);
 	}
+
+	@Test
+	public void testFindByTypeNameEqual()
+	{
+		ItemType type = repo.findByTypeName("tengu");
+		assertNotNull(type);
+	}
 	
 }
