@@ -2,6 +2,8 @@ package dardo.eve.backend.repos;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,13 @@ public class IntegrationTestItemTypeRepository {
 	{
 		ItemType type = repo.findByTypeName("tengu");
 		assertNotNull(type);
+	}
+	
+	@Test
+	public void testFindTypeNameLike()
+	{
+		List<String> names = repo.findByTypeNameLike("%ten%");
+		assertNotNull(names);
 	}
 	
 }
