@@ -7,6 +7,8 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -42,7 +44,7 @@ public class IntegrationTestItemTypeRepository {
 	@Test
 	public void testFindTypeNameLike()
 	{
-		List<String> names = repo.findByTypeNameLike("%ten%");
+		List<ItemType> names = repo.findByTypeNameLike("ten", new PageRequest(1, 20, Sort.Direction.ASC));
 		assertNotNull(names);
 	}
 	

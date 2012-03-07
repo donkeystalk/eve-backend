@@ -17,8 +17,12 @@ public class ItemType {
 	@Column
 	private String typeName;
 	
-	@OneToOne(fetch=FetchType.LAZY, mappedBy="itemType")
-	private ItemBlueprint itemBlueprint;
+	@Column
+	private Integer groupID;
+
+	public Integer getGroupID() {
+		return groupID;
+	}
 
 	public void setTypeID(Integer typeID) {
 		this.typeID = typeID;
@@ -28,20 +32,12 @@ public class ItemType {
 		this.typeName = typeName;
 	}
 
-	public void setItemBlueprint(ItemBlueprint itemBlueprint) {
-		this.itemBlueprint = itemBlueprint;
-	}
-
 	public Integer getTypeID() {
 		return typeID;
 	}
 
 	public String getTypeName() {
 		return typeName;
-	}
-
-	public ItemBlueprint getItemBlueprint() {
-		return itemBlueprint;
 	}
 	
 }
