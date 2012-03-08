@@ -55,6 +55,14 @@ public class ItemResource
 	}
 	
 	@GET
+	@Path("/group/{categoryID}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ItemType> findItemTypesByGroupID(@PathParam("categoryID") int id)
+	{
+		return itemTypeRepository.findByGroupID(id);
+	}
+	
+	@GET
 	@Path("/{typeID}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ItemType findItemTypeById(@PathParam("typeID") int id)

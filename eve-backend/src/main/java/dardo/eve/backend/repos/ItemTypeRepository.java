@@ -11,5 +11,6 @@ public interface ItemTypeRepository extends JpaRepository<ItemType, Integer>{
 	
 	ItemType findByTypeName(String typeName);
 	List<ItemType> findByTypeNameLike(String typeName, Pageable pageable);
+	List<ItemType> findByGroupID(int groupId);
 	
 }
