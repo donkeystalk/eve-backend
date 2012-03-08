@@ -19,7 +19,7 @@ public class ItemType {
 	
 	@Column
 	private Integer groupID;
-
+	
 	public Integer getGroupID() {
 		return groupID;
 	}

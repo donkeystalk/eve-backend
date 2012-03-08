@@ -17,7 +17,9 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import dardo.eve.backend.models.ItemGroup;
 import dardo.eve.backend.models.ItemType;
+import dardo.eve.backend.repos.ItemGroupRepository;
 import dardo.eve.backend.repos.ItemTypeRepository;
 
 @Path("/item")
@@ -26,6 +28,9 @@ public class ItemResource
 {
 	@Autowired
 	private ItemTypeRepository itemTypeRepository;
+	
+	@Autowired
+	private ItemGroupRepository itemGroupRepository;
 	
 	@GET
 	@Path("/names")
@@ -39,6 +44,14 @@ public class ItemResource
 			return itemTypeRepository.findByTypeNameLike(name, new PageRequest(1, 20, sort));
 		}
 		return Collections.EMPTY_LIST;
+	}
+	
+	@GET
+	@Path("/group")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ItemGroup> findItemGroups()
+	{
+		return itemGroupRepository.findSelectableItemGroups();
 	}
 	
 	@GET
