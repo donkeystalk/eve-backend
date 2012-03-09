@@ -2,21 +2,23 @@ package dardo.eve.backend.repos;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import dardo.eve.backend.models.ItemBlueprint;
+import dardo.eve.backend.models.MarketCategory;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:config/applicationContext.xml")
-public class IntegrationTestItemBlueprintRepository {
+public class TestJdbcCategoryRepo {
 
 	@Autowired
-	private ItemBlueprintRepository repo;
-	
+	private JdbcCategoryRepo repo;
+
 	@Test
 	public void testInject()
 	{
@@ -24,10 +26,18 @@ public class IntegrationTestItemBlueprintRepository {
 	}
 	
 	@Test
-	public void testFindOneItemBlueprint()
+	public void testFindBaseMarketCategories()
 	{
-		ItemBlueprint bp = repo.findOne(1032);
-		assertNotNull(bp);
+		List<MarketCategory> c = repo.findBaseMarketCategories();
+		assertNotNull(c);
+		assertEquals(5, c.size());
 	}
 	
+	@Test
+	public void testFindMarketGroupByParentID()
+	{
+		List<MarketCategory> c = repo.findMarketGroupByParentID(1384);
+		assertNotNull(c);
+		assertEquals(2, c.size());
+	}
 }
